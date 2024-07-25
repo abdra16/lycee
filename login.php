@@ -1,59 +1,76 @@
 <?php
-// Informations de connexion à la base de données
-$host = 'localhost';
-$db = 'gestion_stock';
-$user = 'root';
-$pass = '';
+session_start();
 
-// Connexion à la base de données
-$conn = new mysqli($host, $user, $pass, $db);
-
-// Vérification de la connexion
-if ($conn->connect_error) {
-    die("La connexion a échoué: " . $conn->connect_error);
+// Vérifier si un message de succès est présent dans la session
+if (isset($_SESSION['success_message'])) {
+    echo '<div class="success-message">' . $_SESSION['success_message'] . '</div>';
+    // Effacer le message de la session après l'avoir affiché
+    unset($_SESSION['success_message']);
 }
-
-// Récupération des données du formulaire
-$username = $_POST['username'];
-$password = $_POST['password'];
-$role = $_POST['role'];
-
-// Préparation de la requête SQL
-$stmt = $conn->prepare("SELECT * FROM users WHERE username = ? AND role = ?");
-$stmt->bind_param("ss", $username, $role);
-
-// Exécution de la requête
-$stmt->execute();
-$result = $stmt->get_result();
-
-// Vérification des résultats
-if ($result->num_rows > 0) {
-    $user = $result->fetch_assoc();
-
-    // Vérification du mot de passe
-    if (password_verify($password, $user['password'])) {
-        // Démarrer la session
-        session_start();
-        $_SESSION['username'] = $username;
-        $_SESSION['role'] = $role;
-
-        // Redirection en fonction du rôle
-        if ($role === 'admin') {
-            header("Location: admin_dashboard.php");
-        } elseif ($role === 'supplier') {
-            header("Location: supplier_dashboard.php");
-        } elseif ($role === 'client') {
-            header("Location: client_dashboard.php");
-        }
-        exit();
-    } else {
-        echo "Mot de passe incorrect.";
-    }
-} else {
-    echo "Nom d'utilisateur ou rôle incorrect.";
-}
-
-// Fermeture de la connexion
-$stmt->close();
-$conn->close();
 ?>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Gestion de Stock</title>
+    <link rel="stylesheet" href="connexion.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="message">
+        <div class="message">
+        <h1><i class="fas fa-user-shield"></i> Connexion / Inscription Administrateur</h1>
+                 <p>Choisissez une action :</p>
+        <div class="btn-wrapper">
+        <button class="button" id="show-signup"><i class="fas fa-user-plus"></i> S'inscrire</button>
+        <button class="button" id="show-login"><i class="fas fa-sign-in-alt"></i> Se connecter</button>
+    </div>
+</div>
+
+        </div>
+        <div class="form-wrapper">
+            <div class="form form--login">
+                <div class="form--heading">😊 Content de te revoir</div>
+                <form id="login-form" action="traitement_connexion.php" method="post">
+                    <div class="input-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Nom d'utilisateur" name="username" required>
+                    </div>
+                    <p class="form--explanation">Entrez votre nom d'utilisateur enregistré.</p>
+                    <div class="input-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Mot de passe" name="password" required>
+                    </div>
+                    <p class="form--explanation">Entrez votre mot de passe pour accéder à votre compte.</p>
+                    <button class="button" type="submit"><i class="fas fa-sign-in-alt"></i> Se connecter</button>
+                </form>
+            </div>
+
+            <div class="form form--signup">
+                <div class="form--heading">😊 Accueillir! S'inscrire</div>
+                <form id="register-form" action="traitement_inscription.php" method="post">
+                    <div class="input-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Nom d'utilisateur" id="username" name="username" required>
+                    </div>
+                    <p class="form--explanation">Entrez votre nom d'utilisateur unique.</p>
+                    <div class="input-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Email" id="email" name="email" required>
+                    </div>
+                    <p class="form--explanation">Utilisez une adresse email valide pour l'inscription.</p>
+                    <div class="input-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Mot de passe" id="password" name="password" required>
+                    </div>
+                    <p class="form--explanation">Choisissez un mot de passe sécurisé.</p>
+                    <button class="button" type="submit"><i class="fas fa-user-plus"></i> S'inscrire</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+/* Reset des marges et des paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styles de base pour le corps du document */
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('background.jpg');
+    /* Image de fond */
+    background-size: cover;
+    /* Redimensionner pour couvrir tout l'écran */
+    background-attachment: fixed;
+    /* Image de fond fixe */
+    color: #333;
+    /* Couleur du texte principale */
+    line-height: 1.6;
+    /* Espacement des lignes */
+    animation: fadeIn 0.5s ease;
+    /* Animation de fondu à l'entrée */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* Hauteur minimale de la fenêtre visible */
+}
+
+/* Animation de fondu à l'entrée */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Conteneur principal */
+.main-container {
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Fond noir transparent */
+    padding: 20px;
+    /* Espacement intérieur */
+    border-radius: 10px;
+    /* Coins arrondis */
+    text-align: center;
+    /* Centrer le contenu */
+    width: 80%;
+    /* Largeur du conteneur */
+    max-width: 600px;
+    /* Largeur maximale */
+}
+
+/* Styles pour les titres principaux */
+h1 {
+    font-size: 3rem;
+    /* Taille de police */
+    margin-bottom: 1rem;
+    /* Marge en bas */
+    color: #fff;
+    /* Couleur du texte */
+}
+
+/* Styles pour les boutons */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #007bff;
+    /* Couleur de fond */
+    color: #fff;
+    /* Couleur du texte */
+    text-decoration: none;
+    border-radius: 5px;
+    /* Coins arrondis */
+    transition: background-color 0.3s ease;
+    /* Transition douce */
+}
+
+.button:hover {
+    background-color: #0056b3;
+    /* Couleur de fond au survol */
+}
+
+/* Styles pour les liens */
+a {
+    color: #007bff;
+    /* Couleur du lien */
+    text-decoration: none;
+    /* Pas de soulignement */
+}
+
+a:hover {
+    text-decoration: underline;
+    /* Soulignement au survol */
+}

@@ -1,0 +1,160 @@
+/* Reset des styles par défaut */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styles pour le header */
+header {
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Fond noir transparent */
+    padding: 10px 20px;
+    color: #fff;
+    /* Couleur du texte */
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* Ombre légère */
+}
+
+header h1 {
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    /* Ombre portée pour le texte */
+}
+
+/* Styles pour les boutons du header */
+.header-buttons {
+    margin-top: 10px;
+}
+
+.header-button {
+    display: inline-block;
+    padding: 8px 12px;
+    margin-right: 10px;
+    color: #fff;
+    text-decoration: none;
+    background-color: #2828b4;
+    /* Couleur de fond bleu */
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    /* Transition douce pour le changement de couleur de fond */
+}
+
+.header-button:hover {
+    background-color: #45a049;
+    /* Couleur de fond verte légèrement plus foncée au survol */
+}
+
+.header-button i {
+    margin-right: 5px;
+}
+
+/* Styles pour le body */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-image: url('img/art.jpg');
+    /* Remplacez par votre image de fond */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Fond noir transparent */
+    padding: 20px;
+    color: #fff;
+    /* Couleur du texte */
+    animation: fadeIn 1s ease;
+    /* Animation de fondu en entrée */
+}
+
+/* Animation de fondu en entrée */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Conteneur principal */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Fond blanc légèrement transparent */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    animation: slideIn 1s ease;
+    /* Animation de glissement en entrée */
+}
+
+/* Animation de glissement en entrée */
+@keyframes slideIn {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Styles pour les titres */
+h1,
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    /* Ombre portée pour le texte */
+}
+
+/* Styles pour les messages de confirmation */
+.success-message {
+    background-color: #28a745;
+    /* Couleur de fond verte */
+    color: #fff;
+    /* Couleur du texte blanc */
+    padding: 10px 20px;
+    /* Espacement intérieur */
+    margin: 20px 0;
+    /* Marge autour du message */
+    border-radius: 5px;
+    /* Bordure arrondie */
+    text-align: center;
+    /* Centrage du texte */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Ombre douce */
+}
+
+a.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    /* Couleur bleue pour le bouton de retour */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+a.back-button:hover {
+    background-color: #0056b3;
+    /* Couleur bleue plus foncée au survol */
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Fond noir transparent */
+    color: #fff;
+    /* Couleur du texte */
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

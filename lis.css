@@ -1,0 +1,197 @@
+       /* Styles globaux pour le corps de la page */
+       body {
+           font-family: Arial, sans-serif;
+           background: url('img/entrepot.jpg') no-repeat center center fixed;
+           background-size: cover;
+           color: #fff;
+           margin: 0;
+           padding: 0;
+       }
+
+       /* Style pour le cadre du contenu principal */
+       .container {
+           background: rgba(0, 0, 0, 0.7);
+           /* Cadre noir transparent */
+           border-radius: 10px;
+           padding: 20px;
+           max-width: 1000px;
+           margin: 20px auto;
+       }
+
+       /* Style pour le tableau */
+       .table {
+           width: 100%;
+           border-collapse: collapse;
+           margin-top: 20px;
+       }
+
+       .table th,
+       .table td {
+           padding: 10px;
+           text-align: left;
+           border: 1px solid rgba(255, 255, 255, 0.3);
+           /* Bordures transparentes */
+       }
+
+       .table th {
+           background-color: rgba(0, 0, 0, 0.8);
+           /* En-tête du tableau noir transparent */
+           color: #fff;
+       }
+
+       .table td {
+           background-color: rgba(0, 0, 0, 0.5);
+           /* Cellules du tableau noir transparent */
+           color: #fff;
+       }
+
+       .table tr.status-en-attente {
+           background-color: rgba(255, 165, 0, 0.7);
+           /* Orange transparent */
+       }
+
+       .table tr.status-acceptee {
+           background-color: rgba(0, 128, 0, 0.7);
+           /* Vert transparent */
+       }
+
+       .table tr.status-annulee {
+           background-color: rgba(255, 0, 0, 0.7);
+           /* Rouge transparent */
+       }
+
+       .table tr.status-rupture {
+           background-color: rgba(128, 0, 128, 0.7);
+           /* Violet transparent */
+       }
+
+       /* Style pour les titres */
+       h2 {
+           border-bottom: 2px solid rgba(0, 122, 204, 0.7);
+           /* Couleur bleue transparente */
+           padding-bottom: 10px;
+       }
+
+       /* Style pour les boutons */
+       .btn {
+           display: inline-block;
+           padding: 10px 20px;
+           color: #fff;
+           text-decoration: none;
+           border-radius: 5px;
+           font-size: 16px;
+           text-align: center;
+           background: rgba(0, 0, 0, 0.7);
+           /* Bouton noir transparent */
+       }
+
+       .btn-success {
+           background: rgba(0, 128, 0, 0.7);
+           /* Bouton succès vert transparent */
+       }
+
+       .btn-primary {
+           background: rgba(0, 0, 255, 0.7);
+           /* Bouton primaire bleu transparent */
+       }
+
+       .btn:hover {
+           background: rgba(0, 61, 153, 0.7);
+           /* Couleur du bouton au survol transparente */
+       }
+
+       /* Style pour les formulaires */
+       form select {
+           padding: 5px;
+           border-radius: 5px;
+           border: 1px solid rgba(255, 255, 255, 0.3);
+           background: rgba(0, 0, 0, 0.5);
+           color: #fff;
+       }
+
+       /* Style pour la légende des couleurs */
+       .legend {
+           margin-top: 20px;
+           padding: 10px;
+           background: rgba(0, 0, 0, 0.8);
+           border-radius: 5px;
+       }
+
+       .legend p {
+           margin: 0;
+           font-size: 16px;
+           color: #fff;
+       }
+
+       .color-box {
+           display: inline-block;
+           width: 20px;
+           height: 20px;
+           border-radius: 3px;
+           margin-right: 10px;
+       }
+
+       /* Styles de base */
+       .modal {
+           display: none;
+           position: fixed;
+           z-index: 1;
+           left: 0;
+           top: 0;
+           width: 100%;
+           height: 100%;
+           overflow: auto;
+           background-color: rgb(0, 0, 0);
+           background-color: rgba(0, 0, 0, 0.4);
+           padding-top: 60px;
+       }
+
+       .modal-content {
+           background-color: #fefefe;
+           margin: 5% auto;
+           padding: 20px;
+           border: 1px solid #888;
+           width: 80%;
+       }
+
+       .close {
+           color: #aaa;
+           float: right;
+           font-size: 28px;
+           font-weight: bold;
+       }
+
+       .close:hover,
+       .close:focus {
+           color: black;
+           text-decoration: none;
+           cursor: pointer;
+       }
+
+       .status-en-attente {
+           background-color: rgba(255, 165, 0, 0.2);
+       }
+
+       .status-acceptee {
+           background-color: rgba(0, 128, 0, 0.2);
+       }
+
+       .status-annulee {
+           background-color: rgba(255, 0, 0, 0.2);
+       }
+
+       .status-rupture {
+           background-color: rgba(128, 0, 128, 0.2);
+       }
+
+       .legend {
+           margin: 20px 0;
+       }
+
+       .color-box {
+           display: inline-block;
+           width: 20px;
+           height: 20px;
+           margin-right: 10px;
+           vertical-align: middle;
+       }

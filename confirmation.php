@@ -1,92 +1,58 @@
 <?php
-// Connexion à la base de données
+// Connexion à la base de données (si nécessaire)
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "gestion_stock";
+$db_username = "root";
+$db_password = "";
+$dbname = "essai";
 
-try {
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Erreur de connexion : " . $e->getMessage());
+$conn = new mysqli($servername, $db_username, $db_password, $dbname);
+
+if ($conn->connect_error) {
+    die("Échec de la connexion : " . $conn->connect_error);
 }
 
-// Récupération des commandes depuis la base de données
-$stmt_commandes = $pdo->query("SELECT * FROM commande");
-$commandes = $stmt_commandes->fetchAll(PDO::FETCH_ASSOC);
+// Vérifiez le statut de la commande passé en paramètre
+$status = isset($_GET['status']) ? htmlspecialchars($_GET['status']) : 'error';
 
-// Traitement de l'acceptation d'une commande
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accepter'])) {
-    $id_commande = $_POST['id_commande'];
+$message = '';
 
-    // Vérification des quantités en stock
-    $stmt_commande_articles = $pdo->prepare("
-        SELECT a.id_article, a.quantite_stock, ca.quantite 
-        FROM commande_article ca 
-        JOIN article a ON ca.id_article = a.id 
-        WHERE ca.id_commande = :id_commande
-    ");
-    $stmt_commande_articles->execute(['id_commande' => $id_commande]);
-    $commande_articles = $stmt_commande_articles->fetchAll(PDO::FETCH_ASSOC);
-
-    $update_articles = [];
-    $commande_validée = true;
-
-    foreach ($commande_articles as $commande_article) {
-        $article_id = $commande_article['id_article'];
-        $quantite_stock = $commande_article['quantite_stock'];
-        $quantite_commande = $commande_article['quantite'];
-
-        // Si la quantité commandée dépasse le stock disponible
-        if ($quantite_commande > $quantite_stock) {
-            $update_articles[] = [
-                'id_article' => $article_id,
-                'statut' => 'Rupture'
-            ];
-            $commande_validée = false;
-        } else {
-            $update_articles[] = [
-                'id_article' => $article_id,
-                'statut' => 'Disponible'
-            ];
-        }
-    }
-
-    if ($commande_validée) {
-        // Mise à jour du statut de la commande
-        $stmt = $pdo->prepare("UPDATE commande SET statut = 'Acceptée', date_acceptation = NOW() WHERE id = :id_commande");
-        $stmt->execute(['id_commande' => $id_commande]);
-
-        // Mise à jour du statut des articles et diminution des quantités en stock
-        foreach ($update_articles as $update_article) {
-            $stmt_article_update = $pdo->prepare("
-                UPDATE article 
-                SET statut = :statut, quantite_stock = quantite_stock - (
-                    SELECT quantite FROM commande_article 
-                    WHERE id_commande = :id_commande AND id_article = :id_article
-                )
-                WHERE id = :id_article
-            ");
-            $stmt_article_update->execute([
-                'statut' => $update_article['statut'],
-                'id_commande' => $id_commande,
-                'id_article' => $update_article['id_article']
-            ]);
-        }
-
-        echo "<script>alert('Commande acceptée et mise à jour des articles !');</script>";
-    } else {
-        echo "<script>alert('Commande non acceptée : certains articles sont en rupture de stock.');</script>";
-    }
+if ($status == 'success') {
+    $message = "La mise à jour de la commande a été effectuée avec succès.";
+} elseif ($status == 'error') {
+    $message = "Une erreur est survenue lors de la mise à jour de la commande.";
+} else {
+    $message = "Statut inconnu.";
 }
 
-// Traitement de la livraison d'une commande
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['livrer'])) {
-    $id_commande = $_POST['id_commande'];
-    $stmt = $pdo->prepare("UPDATE commande SET statut = 'Livrée', date_livraison = NOW() WHERE id = :id_commande");
-    $stmt->execute(['id_commande' => $id_commande]);
-
-    echo "<script>alert('Commande livrée !');</script>";
-}
+$conn->close();
 ?>
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation</title>
+    <link rel="stylesheet" href="confirmation.css"> <!-- Assurez-vous d'avoir ce fichier CSS pour le style -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Inclure Font Awesome -->
+</head>
+
+<body>
+    <header>
+        <h1><i class="fas fa-check-circle"></i> Confirmation</h1>
+    </header>
+
+    <div class="container">
+        <section class="confirmation-message">
+            <h2><i class="fas fa-info-circle"></i> <?php echo htmlspecialchars($message); ?></h2>
+            <a href="commande_client.php" class="back-button"><i class="fas fa-arrow-left"></i> Retour à la liste des commandes</a>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Entrepôt - Tous droits réservés <i class="fa fa-copyright"></i></p>
+    </footer>
+</body>
+
+</html>

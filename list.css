@@ -1,0 +1,194 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('img/entrepot.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* Alignement en haut */
+    min-height: 100vh;
+    /* Pleine hauteur de la vue */
+    padding-top: 50px;
+    /* Espace au-dessus du cadre */
+    animation: fadeIn 2s ease-in-out;
+    /* Animation d'apparition */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.container {
+    max-width: 1100px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 25px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    color: #fff;
+    animation: slideIn 1s ease-in-out;
+    /* Animation de glissement */
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+h2 {
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+    animation: fadeIn 2s ease-in-out;
+    /* Animation d'apparition */
+}
+
+/* Form styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 200px;
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+    /* Animation de transition */
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    /* Changement de couleur à la mise au point */
+}
+
+.btn-primary,
+.btn-success {
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    /* Animation de transition */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+    /* Animation de survol */
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+    /* Animation de survol */
+}
+
+/* Table styles */
+.table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.1);
+    animation: fadeIn 2s ease-in-out;
+    /* Animation d'apparition */
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #444;
+    transition: background-color 0.3s ease;
+    /* Animation de transition */
+}
+
+.table th {
+    background-color: #1f2d3d;
+    color: #fff;
+    font-weight: bold;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.table-striped tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    /* Animation de survol */
+}
+
+.table-bordered {
+    border: 1px solid #444;
+}
+
+.table-success td {
+    background-color: #d4edda !important;
+}
+
+.table-danger td {
+    background-color: #f8d7da !important;
+}
+
+.table-dark td {
+    background-color: #343a40 !important;
+    color: #fff;
+}
+
+.table-warning td {
+    background-color: #fff3cd !important;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .form-control {
+        width: 100%;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .table th,
+    .table td {
+        padding: 8px;
+    }
+}

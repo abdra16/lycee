@@ -1,133 +1,163 @@
-<?php
-// Fonction pour récupérer le nombre de commandes par mois et par année
-function getCommandesParMois($pdo, $annee) {
-    $sql = "SELECT MONTH(date_commande) AS mois, COUNT(*) AS nombre_commandes
-            FROM commande
-            WHERE YEAR(date_commande) = :annee
-            GROUP BY mois
-            ORDER BY mois";
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(['annee' => $annee]);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
-// Connexion à la base de données (à adapter selon votre configuration)
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "gestion_stock";
-
-try {
-    // Connexion à la base de données avec PDO
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    // Déterminer l'année actuelle et par défaut (si aucune sélectionnée)
-    $anneeActuelle = date('Y');
-    $annee = isset($_GET['annee']) ? intval($_GET['annee']) : $anneeActuelle;
-
-    // Liste des années pour lesquelles les données sont disponibles
-    $anneesDisponibles = range(2000, 2050);
-
-    // Vérification si l'année est valide (dans la plage de 2000 à 2050)
-    if ($annee < 2000 || $annee > 2050) {
-        $annee = $anneeActuelle; // Retour à l'année actuelle si une année invalide est sélectionnée
-    }
-
-    // Récupérer les données pour le graphique
-    $resultats = getCommandesParMois($pdo, $annee);
-
-} catch(PDOException $e) {
-    $error = "Erreur de connexion : " . $e->getMessage();
-    echo $error; // Afficher l'erreur pour le débogage
-    $resultats = []; // Assurer que $resultats est défini même en cas d'erreur
-}
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statistiques des Commandes</title>
-    <!-- Inclure CDN de Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Gestion des Mouvements de Stock</title>
+    <!-- Inclusion de Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Inclusion de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- CSS personnalisé -->
     <style>
-        /* Styles personnalisés pour la mise en forme du graphique et du tableau */
-        .chart-container {
-            width: 80%;
-            margin: auto;
+        /* Réinitialiser les marges et les paddings par défaut */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Style pour le body avec une image de fond */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0; /* Couleur de fond de secours */
+            background-image: url('img/entrepot.jpg'); /* Chemin vers votre image de fond */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: white; /* Couleur de texte pour tout le corps */
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7); /* Fond blanc transparent */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* Style pour le titre */
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #fff; /* Couleur de texte pour le titre */
+        }
+
+        /* Style pour les boutons */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #007bff; /* Bleu */
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Bleu foncé au survol */
+        }
+
+        .btn-danger {
+            background-color: #dc3545; /* Rouge */
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333; /* Rouge foncé au survol */
+        }
+
+        /* Style pour la table des mouvements */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
             margin-top: 20px;
         }
-        .chart-container h2 {
-            margin-bottom: 20px;
+
+        .table th, .table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            color: #fff; /* Couleur de texte pour les cellules de la table */
+        }
+
+        .table th {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Fond gris clair pour les entêtes */
+        }
+
+        /* Style pour les boutons dans les cellules de la table */
+        .table .btn {
+            margin: 0;
+        }
+
+        /* Responsive design pour la table */
+        @media (max-width: 768px) {
+            .table th, .table td {
+                padding: 8px;
+            }
+            .btn {
+                font-size: 0.9em;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="chart-container">
-        <h2>Statistiques des Commandes par Mois (<?= $annee ?>)</h2>
+    <div class="container">
+        <h1>Gestion des Mouvements de Stock</h1>
 
-        <!-- Sélecteur d'année pour la navigation -->
-        <form method="get" action="">
-            <label for="annee">Choisir une année :</label>
-            <select name="annee" id="annee">
-                <?php foreach ($anneesDisponibles as $a) : ?>
-                    <option value="<?= $a ?>" <?= $a == $annee ? 'selected' : '' ?>><?= $a ?></option>
-                <?php endforeach; ?>
-            </select>
-            <button type="submit">Afficher</button>
-        </form>
+        <!-- Bouton de retour -->
+        <a href="dashboard.php" class="btn btn-primary mb-3"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
 
-        <!-- Graphique pour afficher les commandes par mois -->
-        <canvas id="commandesChart"></canvas>
+        <!-- Tableau des articles avec détails et mouvements de stock -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Article</th>
+                    <th>Description</th>
+                    <th>Prix</th>
+                    <th>Stock Actuel</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Connexion à la base de données (à remplacer par vos informations de connexion)
+                $bdd = new PDO('mysql:host=localhost;dbname=essai', 'root', '');
+
+                // Requête pour récupérer la liste des articles avec leurs détails et le stock actuel
+                $requete = $bdd->query('SELECT id, nom_article, description_article, prix_article, stock_article FROM articles');
+                $articles = $requete->fetchAll();
+
+                foreach ($articles as $article) {
+                    ?>
+                    <tr>
+                        <td><?= htmlspecialchars($article['nom_article']) ?></td>
+                        <td><?= htmlspecialchars($article['description_article']) ?></td>
+                        <td><?= number_format($article['prix_article'], 2, ',', ' ') ?> €</td>
+                        <td><?= $article['stock_article'] ?></td>
+                        <td>
+                            <a href="ajouter_stock.php?id=<?= $article['id'] ?>" class="btn btn-success"><i class="fas fa-plus"></i> Ajouter Stock</a>
+                            <a href="retirer_stock.php?id=<?= $article['id'] ?>" class="btn btn-warning"><i class="fas fa-minus"></i> Retirer Stock</a>
+                        </td>
+                    </tr>
+                    <?php
+                }
+                ?>
+            </tbody>
+        </table>
     </div>
 
-    <!-- Script JavaScript pour initialiser le graphique avec Chart.js -->
-    <script>
-    // Récupérer les données PHP dans JavaScript
-    var phpData = <?php echo json_encode($resultats); ?>;
-
-    // Préparer les données pour le graphique
-    var labels = [];
-    var data = [];
-
-    phpData.forEach(function(item) {
-        // Convertir le mois en nom complet (optionnel)
-        var moisLabels = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-                          'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
-        labels.push(moisLabels[item.mois - 1]); // -1 pour correspondre à l'index 0 des mois
-        data.push(item.nombre_commandes);
-    });
-
-    // Créer le graphique avec Chart.js
-    var ctx = document.getElementById('commandesChart').getContext('2d');
-    var commandesChart = new Chart(ctx, {
-        type: 'line', // Type de graphique en courbe
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Nombre de Commandes',
-                data: data,
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        precision: 0
-                    }
-                }]
-            }
-        }
-    });
-    </script>
+    <!-- Inclusion de Bootstrap JS et jQuery pour les fonctionnalités JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

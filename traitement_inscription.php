@@ -1,40 +1,44 @@
 <?php
-// Informations de connexion à la base de données
-$host = 'localhost';
-$db = 'gestion_stock';
-$user = 'root';
-$pass = '';
+session_start();
+include 'db_conn.php'; // Fichier de connexion à la base de données
 
-// Connexion à la base de données
-$conn = new mysqli($host, $user, $pass, $db);
+// Vérifier si le formulaire a été soumis
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Récupérer et valider les données du formulaire
+    $username = trim($_POST["username"]);
+    $email = trim($_POST["email"]);
+    $password = trim($_POST["password"]);
 
-// Vérification de la connexion
-if ($conn->connect_error) {
-    die("La connexion a échoué: " . $conn->connect_error);
-}
+    if (empty($username) || empty($email) || empty($password)) {
+        $_SESSION['error_message'] = "Tous les champs sont obligatoires.";
+        header("Location: login.php");
+        exit();
+    }
 
-// Récupération des données du formulaire
-$username = $_POST['username'];
-$email = $_POST['email'];
-$age = $_POST['age'];
-$password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Hachage du mot de passe
-$role = $_POST['role'];
+    // Hacher le mot de passe
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-// Préparation de la requête SQL
-$stmt = $conn->prepare("INSERT INTO users (username, email, age, password, role) VALUES (?, ?, ?, ?, ?)");
-$stmt->bind_param("ssiss", $username, $email, $age, $password, $role);
+    // Préparer et exécuter la requête d'insertion
+    $sql = "INSERT INTO administrateurs (username, email, password) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    if ($stmt) {
+        $stmt->bind_param("sss", $username, $email, $hashed_password);
+        if ($stmt->execute()) {
+            $_SESSION['success_message'] = "Inscription réussie. Vous pouvez maintenant vous connecter.";
+            header("Location: login.php");
+        } else {
+            $_SESSION['error_message'] = "Erreur lors de l'inscription. Veuillez réessayer.";
+            header("Location: login.php");
+        }
+        $stmt->close();
+    } else {
+        $_SESSION['error_message'] = "Erreur de préparation de la requête.";
+        header("Location: login.php");
+    }
 
-// Exécution de la requête
-if ($stmt->execute()) {
-    echo "Inscription réussie !";
-    // Redirection vers la page de connexion
-    header("Location: index.php");
-    exit();
+    // Fermer la connexion
+    $conn->close();
 } else {
-    echo "Erreur: " . $stmt->error;
+    header("Location: login.php");
 }
-
-// Fermeture de la connexion
-$stmt->close();
-$conn->close();
 ?>

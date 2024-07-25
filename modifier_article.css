@@ -1,0 +1,129 @@
+/* Réinitialiser les marges et les paddings par défaut */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style pour le body avec une image de fond */
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('img/art.jpg');
+    /* Remplacer par le chemin de votre image */
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+    /* Texte en blanc */
+}
+
+/* Container principal */
+.container {
+    background: rgba(0, 0, 0, 0.7);
+    /* Fond blanc avec transparence */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    margin-top: 50px;
+    color: #333;
+    /* Texte noir à l'intérieur du container */
+}
+
+/* Style pour le titre */
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+    color: white;
+    /* Couleur bleue */
+}
+
+/* Style pour les paragraphes */
+p {
+    font-size: 1em;
+    margin-bottom: 10px;
+    text-align: center;
+    color: white;
+    /* Texte en blanc */
+}
+
+/* Style pour les formulaires */
+form {
+    margin-top: 20px;
+}
+
+/* Style pour les labels des formulaires */
+label {
+    font-weight: bold;
+    color: white;
+    /* Texte en blanc */
+}
+
+/* Style pour les champs de formulaires */
+.form-control {
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* Style pour les boutons */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Style pour le message d'alerte */
+.alert {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    /* Texte en blanc */
+}
+
+/* Centrage du container */
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+/* Style pour le textarea */
+textarea.form-control {
+    height: 100px;
+    color: black;
+    /* Texte en noir dans le textarea */
+}
+
+/* Style pour les select */
+select.form-control {
+    height: auto;
+    color: black;
+    /* Texte en noir dans les select */
+}

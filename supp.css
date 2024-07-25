@@ -1,0 +1,134 @@
+/* Réinitialisation des marges et des paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style du body avec fond noir semi-transparent */
+body {
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Fond noir semi-transparent */
+    background-image: url('img/entrepot.jpg');
+    /* Image de fond */
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    /* Police générique */
+    color: #fff;
+    /* Couleur du texte */
+}
+
+/* Style du header */
+header {
+    background-color: #333;
+    /* Couleur de fond du header */
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 24px;
+    color: #fff;
+}
+
+.header-buttons {
+    margin-top: 10px;
+}
+
+.header-button {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 8px 12px;
+    color: #fff;
+    text-decoration: none;
+    background-color: #555;
+    border-radius: 5px;
+}
+
+.header-button i {
+    margin-right: 5px;
+}
+
+.header-button:hover {
+    background-color: #777;
+}
+
+/* Style du container principal */
+.form-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Fond semi-transparent pour le container */
+    border-radius: 10px;
+    animation: fadeIn 0.5s ease-in-out;
+    /* Animation d'apparition */
+}
+
+/* Animation de fadeIn */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Style de la confirmation */
+.confirmation {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fond semi-transparent pour la confirmation */
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.confirmation p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.confirmation form {
+    margin-top: 10px;
+}
+
+.confirmation button,
+.cancel-button {
+    padding: 10px 15px;
+    margin-right: 10px;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.confirmation button i,
+.cancel-button i {
+    margin-right: 5px;
+}
+
+.confirmation button {
+    background-color: #d9534f;
+    /* Rouge */
+}
+
+.confirmation button:hover {
+    background-color: #c9302c;
+    /* Rouge plus sombre au survol */
+}
+
+.cancel-button {
+    background-color: #5bc0de;
+    /* Bleu */
+}
+
+.cancel-button:hover {
+    background-color: #46b8da;
+    /* Bleu plus sombre au survol */
+}

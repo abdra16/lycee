@@ -1,0 +1,217 @@
+/* Styles pour le corps de la page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    background-image: url('img/entrepot.jpg');
+    /* Chemin vers votre image de fond */
+    background-size: cover;
+    background-attachment: fixed;
+    /* Image de fond fixe */
+    color: white;
+    /* Couleur de texte blanche */
+}
+
+/* Styles pour l'en-tête */
+header {
+    background: rgba(0, 0, 0, 0.7);
+    /* Fond noir transparent */
+    text-align: center;
+    padding: 10px 0;
+    animation: fadeInDown 1s ease;
+    /* Animation d'apparition vers le bas */
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Styles pour le contenu principal */
+.dashboard-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    background: rgba(0, 0, 0, 0.7);
+    /* Fond noir transparent */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: zoomIn 1s ease;
+    /* Animation de zoom */
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Styles pour les titres */
+h1,
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    animation: slideInLeft 1s ease;
+    /* Animation de glissement vers la gauche */
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Styles pour les boutons */
+button,
+.dashboard-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    animation: fadeIn 1s ease;
+    /* Animation de fondu */
+    text-decoration: none;
+    /* Suppression du soulignement */
+    display: inline-block;
+    /* Pour que les liens soient comme des boutons */
+    text-align: center;
+    /* Centre le texte */
+    margin: 10px 0;
+    /* Ajoute de la marge entre les boutons */
+}
+
+button:hover,
+.dashboard-button:hover {
+    background-color: #45a049;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Styles pour le pied de page */
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background: rgba(0, 0, 0, 0.7);
+    /* Fond noir transparent */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    animation: slideInUp 1s ease;
+    /* Animation de glissement vers le haut */
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Styles pour les icônes */
+i {
+    margin-right: 5px;
+}
+
+/* Styles pour la liste des livreurs */
+.livreurs-list {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #333;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+tr:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Styles pour les boutons de modification et suppression */
+.edit-button,
+.delete-button {
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.edit-button {
+    background-color: #4CAF50;
+}
+
+.edit-button:hover {
+    background-color: #45a049;
+}
+
+.delete-button {
+    background-color: #f44336;
+}
+
+.delete-button:hover {
+    background-color: #e53935;
+}
+
+/* Styles pour les boutons du tableau de bord */
+.dashboard-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.dashboard-button {
+    padding: 10px 20px;
+}

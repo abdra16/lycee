@@ -1,16 +1,16 @@
-<!-- modifier_categorie.php -->
+<!-- supprimer_categorie.php -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modifier une Catégorie</title>
-    <link rel="stylesheet" href="cate_ajout.css">
+    <title>Supprimer une Catégorie</title>
+    <link rel="stylesheet" href="supp.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 <body>
     <header>
-        <h1><i class="fa fa-edit"></i> Modifier une Catégorie</h1>
+        <h1><i class="fa fa-trash"></i> Supprimer une Catégorie</h1>
         <div class="header-buttons">
             <a href="index.php" class="header-button"><i class="fa fa-home"></i> Accueil</a>
             <a href="categorie.php" class="header-button"><i class="fa fa-list"></i> Liste des Catégories</a>
@@ -18,7 +18,6 @@
     </header>
     <div class="form-container">
         <?php
-        // Récupérer l'ID de la catégorie depuis l'URL
         if (isset($_GET['id']) && !empty($_GET['id'])) {
             $categorie_id = $_GET['id'];
 
@@ -29,8 +28,8 @@
                 exit();
             }
 
-            // Préparer la requête SQL pour récupérer les informations de la catégorie
-            $sql = "SELECT nom, description FROM categories WHERE id = ?";
+            // Récupérer les informations de la catégorie pour confirmation
+            $sql = "SELECT nom FROM categories WHERE id = ?";
             if ($stmt = $mysqli->prepare($sql)) {
                 // Liaison des paramètres
                 $stmt->bind_param("i", $categorie_id);
@@ -39,7 +38,7 @@
                 $stmt->execute();
 
                 // Liaison des résultats
-                $stmt->bind_result($nom, $description);
+                $stmt->bind_result($nom);
 
                 // Récupération des valeurs
                 $stmt->fetch();
@@ -56,21 +55,17 @@
             echo "ID de la catégorie non spécifié.";
             exit();
         }
+
+        // Affichage du message de confirmation
         ?>
-        <form action="update_categorie.php" method="post">
-            <input type="hidden" name="id" value="<?php echo $categorie_id; ?>">
-            <div class="form-group">
-                <label for="nom"><i class="fas fa-tag"></i> Nom de la catégorie</label>
-                <input type="text" id="nom" name="nom" value="<?php echo htmlspecialchars($nom); ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="description"><i class="fas fa-info-circle"></i> Description</label>
-                <textarea id="description" name="description" required><?php echo htmlspecialchars($description); ?></textarea>
-            </div>
-            <div class="form-group">
-                <button type="submit"><i class="fas fa-save"></i> Enregistrer les Modifications</button>
-            </div>
-        </form>
+        <div class="confirmation">
+            <p>Êtes-vous sûr de vouloir supprimer la catégorie "<?php echo htmlspecialchars($nom); ?>" ?</p>
+            <form action="delete_categorie.php" method="post">
+                <input type="hidden" name="id" value="<?php echo $categorie_id; ?>">
+                <button type="submit" name="confirm" class="delete-button"><i class="fas fa-trash"></i> Oui, Supprimer</button>
+                <a href="categorie.php" class="cancel-button"><i class="fas fa-times"></i> Annuler</a>
+            </form>
+        </div>
     </div>
 </body>
 </html>

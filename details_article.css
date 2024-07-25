@@ -1,0 +1,205 @@
+/* Style de base pour le corps de la page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    /* Arrière-plan du corps en noir */
+    color: #fff;
+    /* Texte en blanc */
+    margin: 0;
+    padding: 0;
+    background-image: url('img/entrepot.jpg');
+    /* Remplacez par le chemin de votre image */
+    background-size: cover;
+    /* Ajuste la taille de l'image pour couvrir tout le fond */
+    background-attachment: fixed;
+    /* Garde l'image de fond fixe lors du défilement */
+    background-position: center;
+    /* Centre l'image de fond */
+    overflow-x: hidden;
+    /* Empêche le défilement horizontal */
+}
+
+/* Conteneur principal */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    /* Arrière-plan en noir avec transparence */
+    color: #fff;
+    /* Texte en blanc */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    /* Ombre portée plus douce */
+    animation: fadeIn 1s ease-out;
+    /* Animation d'apparition */
+}
+
+/* Animation d'apparition */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Style du titre */
+h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #007bff;
+    /* Couleur du texte du titre */
+    animation: colorChange 3s infinite alternate;
+    /* Animation de changement de couleur */
+}
+
+/* Animation de changement de couleur */
+@keyframes colorChange {
+    from {
+        color: #007bff;
+    }
+
+    to {
+        color: #00c1d5;
+    }
+}
+
+/* Style du tableau */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    padding: 10px;
+    border-bottom: 1px solid #444;
+    /* Bordure en gris foncé */
+    text-align: left;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Animation de couleur */
+}
+
+table th {
+    background: rgba(0, 0, 0, 0.8);
+    /* Arrière-plan des en-têtes en noir avec transparence */
+    color: #fff;
+    /* Texte des en-têtes en blanc */
+}
+
+table td {
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Arrière-plan des cellules en noir avec transparence */
+    color: #fff;
+    /* Texte des cellules en blanc */
+}
+
+/* Effet de survol des lignes du tableau */
+table tr:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Arrière-plan plus foncé lors du survol */
+    transform: scale(1.02);
+    /* Légère augmentation de la taille lors du survol */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Style des icônes dans le tableau */
+table i {
+    color: #007bff;
+    /* Couleur des icônes */
+    margin-right: 10px;
+}
+
+/* Style du bouton */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #fff;
+    /* Texte des boutons en blanc */
+    background-color: #007bff;
+    /* Couleur de fond des boutons */
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    /* Animation de couleur et de taille */
+}
+
+.btn:hover {
+    background-color: #0056b3;
+    /* Couleur de fond au survol */
+    transform: scale(1.05);
+    /* Augmentation de la taille au survol */
+}
+
+/* Style du bouton secondaire */
+.btn-secondary {
+    background-color: #6c757d;
+    /* Couleur de fond du bouton secondaire */
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    /* Couleur de fond du bouton secondaire au survol */
+    transform: scale(1.05);
+    /* Augmentation de la taille au survol */
+}
+
+/* Style des messages d'erreur ou d'information */
+p {
+    font-size: 16px;
+    color: #dc3545;
+    /* Couleur du texte des messages d'erreur */
+}
+
+/* Style des en-têtes de tableau avec icônes */
+th {
+    text-align: left;
+    font-size: 16px;
+    color: #fff;
+    /* Texte des en-têtes en blanc */
+    padding: 10px;
+}
+
+th i {
+    margin-right: 8px;
+    color: #007bff;
+    /* Couleur des icônes dans les en-têtes */
+    font-size: 1.2em;
+    /* Ajuste la taille de l'icône selon vos besoins */
+}
+
+/* Style du bouton d'impression */
+.btn-print {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #28a745;
+    /* Couleur de fond du bouton d'impression */
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-right: 10px;
+}
+
+.btn-print:hover {
+    background-color: #218838;
+    /* Couleur de fond au survol */
+    transform: scale(1.05);
+}
+
+/* Masquer les boutons lors de l'impression */
+@media print {
+
+    .btn-print,
+    .btn-secondary {
+        display: none;
+    }
+}

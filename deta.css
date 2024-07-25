@@ -1,0 +1,87 @@
+/* Styles pour le corps de la page */
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background: url('img/art.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
+/* Conteneur principal */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    /* Fond blanc semi-transparent pour la lisibilité */
+    border-radius: 8px;
+}
+
+/* Styles pour le titre */
+h2 {
+    color: #007bff;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Styles généraux du tableau */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th,
+table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table th {
+    background-color: #007bff;
+    color: #fff;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Styles pour les icônes */
+i {
+    margin-right: 10px;
+    color: #007bff;
+}
+
+/* Styles pour le bouton */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    background-color: #007bff;
+}
+
+.btn-secondary {
+    background-color: #007bff;
+}
+
+.btn-secondary:hover {
+    background-color: #0056b3;
+}
+
+/* Styles pour les paragraphes */
+p {
+    margin: 0 0 10px;
+}
+
+/* Style pour le lien de retour */
+a.btn {
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+}

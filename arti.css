@@ -1,0 +1,172 @@
+/* Reset des marges et des paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style de base pour le corps de la page */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Couleur de fond */
+    background-image: url('img/art.jpg');
+    /* Image de fond */
+    background-size: cover;
+    /* Assure que l'image de fond couvre toute la page */
+    background-attachment: fixed;
+    /* Fixe l'image de fond pendant le défilement */
+    background-position: center center;
+    /* Centre l'image de fond */
+    animation: fadeIn 1s ease;
+    /* Animation de fondu en entrée */
+    color: #fff;
+    /* Couleur du texte */
+}
+
+/* Animation de fondu en entrée */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.container {
+    max-width: 600px;
+    /* Largeur maximale du contenu */
+    margin: 20px auto;
+    /* Centrage du conteneur */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Couleur de fond du conteneur avec transparence */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Ombre légère */
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #fff;
+    text-align: center;
+    /* Couleur du titre */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+    color: #333;
+    /* Couleur du texte des inputs */
+}
+
+textarea {
+    min-height: 100px;
+    /* Hauteur minimale pour le champ de texte */
+}
+
+select {
+    width: calc(100% - 18px);
+    /* Ajustement pour le sélecteur */
+}
+
+.btn {
+    display: inline-block;
+    background-color: #007bff;
+    /* Couleur de fond du bouton */
+    color: #fff;
+    /* Couleur du texte du bouton */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+    /* Couleur de fond au survol */
+}
+
+.alert {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+    /* Couleur du texte de l'alerte */
+}
+
+.alert-success {
+    background-color: #d4edda;
+    /* Couleur de fond pour l'alerte de succès */
+    border-color: #c3e6cb;
+    color: #155724;
+    /* Couleur du texte pour l'alerte de succès */
+}
+
+/* Image preview */
+#preview {
+    max-width: 100%;
+    margin-top: 10px;
+}
+
+/* Responsive pour les petites tailles d'écran */
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        margin: 10px;
+    }
+}
+
+/* Styles pour le lien avec classe btn et btn-secondary */
+.btn.btn-secondary {
+    /* Ajoute tes styles personnalisés ici */
+    padding: 0.5rem 1rem;
+    /* Ajuste le padding selon ton besoin */
+    text-decoration: none;
+    /* Supprime la décoration de texte par défaut */
+    border-radius: 5px;
+    /* Arrondi les coins du bouton */
+    background-color: #6c757d;
+    /* Couleur de fond */
+    color: #fff;
+    /* Couleur du texte */
+    border: none;
+    /* Supprime la bordure */
+    transition: background-color 0.3s ease;
+    /* Animation de transition */
+}
+
+.btn.btn-secondary:hover {
+    background-color: #495057;
+    /* Couleur de fond au survol */
+    color: #fff;
+    /* Couleur du texte au survol */
+}
+
+/* Styles pour l'icône à l'intérieur du lien */
+.btn i {
+    margin-right: 5px;
+    /* Marge à droite de l'icône */
+}

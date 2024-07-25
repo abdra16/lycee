@@ -1,0 +1,136 @@
+/* Styles généraux pour la page de facture */
+body {
+    font-family: Arial, sans-serif;
+    background: url('img/entrepot.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    color: #fff;
+}
+
+/* Main content */
+main {
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+}
+
+main h2 {
+    border-bottom: 2px solid #007acc;
+    padding-bottom: 10px;
+    color: #fff;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+}
+
+table,
+th,
+td {
+    border: 1px solid #ddd;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+    color: #fff;
+}
+
+th {
+    background: #007acc;
+    color: #fff;
+}
+
+/* Footer */
+footer {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: #fff;
+}
+
+/* Ajout de styles pour les boutons */
+.btn-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Styles pour les boutons d'impression */
+.btn-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    text-align: center;
+}
+
+.btn-print {
+    background-color: #007acc;
+}
+
+.btn-print:hover {
+    background-color: #005999;
+}
+
+.btn-back {
+    background-color: #333;
+}
+
+.btn-back:hover {
+    background-color: #555;
+}
+
+/* Styles spécifiques pour l'impression */
+@media print {
+    .btn-container {
+        display: none;
+        /* Masquer les boutons lors de l'impression */
+    }
+
+    footer {
+        position: static;
+        /* S'assurer que le footer est visible lors de l'impression */
+    }
+}

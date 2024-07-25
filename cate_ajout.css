@@ -1,0 +1,138 @@
+/* Styles pour le body */
+body {
+    background-image: url('img/entrepot.jpg');
+    /* Image de fond */
+    background-size: cover;
+    /* Couverture totale */
+    background-position: center center;
+    /* Positionnement centré */
+    background-attachment: fixed;
+    /* Fixer l'image de fond */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Fond noir transparent */
+    color: #fff;
+    /* Couleur du texte */
+    font-family: Arial, sans-serif;
+    /* Police de caractères */
+    margin: 0;
+    /* Supprimer les marges par défaut */
+    padding: 0;
+    /* Supprimer les paddings par défaut */
+}
+
+/* Styles pour le header */
+header {
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Fond noir transparent */
+    padding: 10px 20px;
+    color: #fff;
+    /* Couleur du texte */
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* Ombre légère */
+}
+
+/* Styles pour le titre */
+header h1 {
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    /* Ombre portée pour le texte */
+}
+
+/* Styles pour les boutons du header */
+.header-buttons {
+    margin-top: 10px;
+}
+
+.header-button {
+    display: inline-block;
+    padding: 8px 12px;
+    margin-right: 10px;
+    color: #fff;
+    text-decoration: none;
+    background-color: #3722bf;
+    /* Couleur de fond verte */
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    /* Transition douce pour le changement de couleur de fond */
+}
+
+.header-button:hover {
+    background-color: #45a049;
+    /* Couleur de fond verte légèrement plus foncée au survol */
+}
+
+/* Styles pour les icônes */
+.header-button i {
+    margin-right: 5px;
+}
+
+/* Styles pour le container du formulaire */
+.form-container {
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Fond blanc transparent */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Ombre légère */
+}
+
+/* Styles pour les groupes de formulaire */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-group textarea {
+    height: 100px;
+}
+
+.form-group button {
+    padding: 10px 20px;
+    background-color: #3722bf;
+    /* Couleur de fond verte */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* Transition douce pour le changement de couleur de fond */
+}
+
+.form-group button:hover {
+    background-color: #45a049;
+    /* Couleur de fond verte légèrement plus foncée au survol */
+}
+
+/* styles.css */
+
+.success-message {
+    background-color: #dff0d8;
+    /* Couleur de fond verte claire */
+    color: #3c763d;
+    /* Couleur du texte verte foncée */
+    border: 1px solid #d6e9c6;
+    /* Bordure verte */
+    padding: 10px;
+    /* Espacement intérieur */
+    margin-top: 20px;
+    /* Marge supérieure */
+    border-radius: 4px;
+    /* Coins arrondis */
+}

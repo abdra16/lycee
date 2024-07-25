@@ -1,0 +1,92 @@
+/* Réinitialisation des styles de base */
+body {
+    font-family: Arial, sans-serif;
+    background: url('img/entrepot.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Styles pour le header */
+header {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px 20px;
+    /* Réduction du padding pour réduire la taille du background */
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* Styles pour le footer */
+footer {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 5px 20px;
+    /* Réduction du padding pour réduire la taille du background */
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Styles pour la section principale */
+main {
+    padding: 20px;
+    max-width: 800px;
+    margin: 50px auto;
+    /* Centrage du cadre principal */
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+}
+
+/* Styles pour les titres de section */
+h2 {
+    border-bottom: 2px solid #007acc;
+    padding-bottom: 10px;
+    margin-top: 20px;
+}
+
+/* Styles pour les listes */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table th,
+table td {
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #007acc;
+    color: #fff;
+}
+
+table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Styles pour les boutons */
+button {
+    background-color: #007acc;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #005a80;
+}
+
+/* Styles pour les icônes dans les boutons */
+button i {
+    margin-right: 5px;
+}
